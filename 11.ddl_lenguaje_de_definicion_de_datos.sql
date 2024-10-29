@@ -1,16 +1,16 @@
 /***************************************************************************************************
-DDL: Lenguaje de Definiciï¿½n de Datos
+DDL: Lenguaje de Definición de Datos
 ****************************************************************************************************
 Objetos de la base de datos:
 
-- Table(Tabla): Unidad bï¿½sica de almacenamiento, compuesto por filas.
-- View(Vista):  Representan lï¿½gicamente un subconjunto de datos de una o mï¿½s tablas.
-- Sequence(Secuencia): Genera valores numï¿½ricos.
-- Index(ï¿½ndice): Mejora el desempeï¿½o de algunas consultas.
-- Synonym(Sinï¿½nimo): Ofrece crear nombres alternativos para un objeto.
+- Table(Tabla): Unidad básica de almacenamiento, compuesto por filas.
+- View(Vista):  Representan lógicamente un subconjunto de datos de una o más tablas.
+- Sequence(Secuencia): Genera valores numéricos.
+- Index(Índice): Mejora el desempeño de algunas consultas.
+- Synonym(Sinónimo): Ofrece crear nombres alternativos para un objeto.
 */
 
-/* Ejemplo 01: Opciï¿½n DEFAULT
+/* Ejemplo 01: Opción DEFAULT
 ******************************************************
 - Especifica un valor por default para una columna durante el insert.
   hire_date DATE DEFAULT SYSDATE,...
@@ -47,16 +47,16 @@ Tipos de datos:
 
 - VARCHAR2(size): Cadena de caracteres de longitud variable
 - CHAR(size): Cadena de caracteres de longitud fija.
-- NUMBER(p, s): Almacena nï¿½meros fijos y puntos flotantes.
+- NUMBER(p, s): Almacena números fijos y puntos flotantes.
 - DATE: Almacena un punto en el tiempo (fecha y hora).
 - LONG: Cadena de caracteres de lon gitud variable (Max 2GB).
-- CLOB: Almacena datos de tipo carï¿½cter (Max 4GB).
+- CLOB: Almacena datos de tipo carácter (Max 4GB).
 - RAW y LONG RAW: Almacena cadenas binarias de ancho variable.
-- BLOB y BFILE: Almacena bloques grandes de datos no estructurados, de tipo binario o de carï¿½cter.
-- ROWID: Almacena una direcciï¿½n ï¿½nica de cada fila de la tabla de la base de datos.
-- TIMESTAMP: Fecha y hora con fracciï¿½n de segundos.
-- INTERVAL YEAR TO MONTH: Almacena un intervalo de aï¿½os en meses
-- INTERVAL DAY TO SECOND: Almacena un intervalo de dï¿½as, minutos y segundos.
+- BLOB y BFILE: Almacena bloques grandes de datos no estructurados, de tipo binario o de carácter.
+- ROWID: Almacena una dirección única de cada fila de la tabla de la base de datos.
+- TIMESTAMP: Fecha y hora con fracción de segundos.
+- INTERVAL YEAR TO MONTH: Almacena un intervalo de años en meses
+- INTERVAL DAY TO SECOND: Almacena un intervalo de días, minutos y segundos.
 
 Restricciones (Constraints):
 
@@ -68,11 +68,11 @@ Restricciones (Constraints):
 
 - Se puede otorgar un nombre a los constraints o el servidor de Oracle genera un 
   nombre usando el formato SYS_Cn.
-- ï¿½Cuï¿½ndo se pueden crear los constraints?
-  * En el mismo momento de la creaciï¿½n de la tabla.
-  * Despuï¿½s de la creaciï¿½n de la tabla.
-- Se define una restricciï¿½n a nivel de columna o a nivel de tabla
-- Para ver una restricciï¿½n se hace a travï¿½s del diccionario de datos.
+- ¿Cuándo se pueden crear los constraints?
+  * En el mismo momento de la creación de la tabla.
+  * Después de la creación de la tabla.
+- Se define una restricción a nivel de columna o a nivel de tabla
+- Para ver una restricción se hace a través del diccionario de datos.
 */
 
 -- PK a nivel de columna
@@ -81,7 +81,7 @@ CREATE TABLE bbb(
   col_a VARCHAR2(20)
 );
 
--- PK a nivï¿½s de tabla
+-- PK a nivel de tabla
 CREATE TABLE ccc(
   ccc_id NUMBER(6),
   col_a VARCHAR2(20),
@@ -111,11 +111,11 @@ CREATE TABLE fff(
 );
 
 /*
-- FOREIGN KEY: Define la columna en la tabla secundaria en el nivel de restricciï¿½n de tabla.
+- FOREIGN KEY: Define la columna en la tabla secundaria en el nivel de restricción de tabla.
 - REFERENCES: Identifica la tabla y columna en la tabla padre o primaria.
 - ON DELETE CASCADE: Cuando se elimina una fila de la tabla principal elimina 
   las filas dependientes en la tabla secundaria
-- ON DELETE SET NULL: Convertir los valores de las claves forï¿½neas dependientes en null.
+- ON DELETE SET NULL: Convertir los valores de las claves foráneas dependientes en null.
 */
 CREATE TABLE supplier(
   supplier_id NUMERIC(10) NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE products(
   CONSTRAINT fk_supplier FOREIGN KEY(supplier_id) REFERENCES supplier(supplier_id)
 );
 
-/* Ejemplo 03: Tabla que hace referencia a sï¿½ misma
+/* Ejemplo 03: Tabla que hace referencia a sí misma
 ******************************************************
 */
 -- Primera forma
@@ -164,7 +164,7 @@ FROM dept80;
 /* Ejemplo 05: Sentencia ALTER TABLE
 ******************************************************
 - Agregar una nueva columna.
-- Modificar la definiciï¿½n de una columna existente.
+- Modificar la definición de una columna existente.
 - Definir un valor por default para la nueva columna.
 - Elimina una columna.
 - Renombrar una columna.
@@ -184,8 +184,8 @@ ADD col_a NUMBER(6);
 ALTER TABLE dept80 READ ONLY;
 
 /* 
-Como en la instrucciï¿½n anterior hicimos un alter de la tabla dept80 a READ ONLY,
-cuando ejecutemos la instrucciï¿½n de abajo nos mostrarï¿½ el siguiente error:
+Como en la instrucción anterior hicimos un alter de la tabla dept80 a READ ONLY,
+cuando ejecutemos la instrucción de abajo nos mostrará el siguiente error:
 
 SQL Error: ORA-12081: update operation not allowed on table "HR"."DEPT80"
 12081. 00000 -  "update operation not allowed on table \"%s\".\"%s\""
